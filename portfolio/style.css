@@ -1,0 +1,15 @@
+.footer{
+    float: right;
+    border-left: 162.5vh solid #3C6E71;
+    border-right: 70px solid #3C6E71;
+    background-color: #3C6E71;
+    margin-right: 0px;
+}
+.footer-links{
+    float: right;
+}
+
+.title{
+    position: fixed;
+    margin-bottom: 100px;
+}
