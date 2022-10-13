@@ -1,9 +1,30 @@
+#photos{
+    display: grid;
+    grid-template-columns: 5% 15% 5% 15% 5% 15% 5% 15% 5% 15%;
+    grid-template-rows: 5% 15% 5% 15% 5% 15% 5% 15% 5% 15%;
+}
+
+
 .footer{
     float: right;
     border-left: 162.5vh solid #3C6E71;
     border-right: 70px solid #3C6E71;
     background-color: #3C6E71;
     margin-right: 0px;
+    position: relative;
+    top: 100vh;
+}
+
+.footer-reduced{
+    float: right;
+    border-left: 60vh solid #3C6E71;
+    border-right: 135px solid #3C6E71;
+    background-color: #3C6E71;
+    padding-top:13px;
+    position: relative;
+    top: 95vh;
+    left: 40vh;
+    
 }
 .footer-links{
     float: right;
