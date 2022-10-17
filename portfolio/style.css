@@ -9,6 +9,9 @@
 img{
     width: 80%;
 }
+/* The following ids show good understanding of id usage, this was
+something I was not completely fluent in a previous lab */
+
 #HSphoto{
     width: 50;
 }
@@ -105,6 +108,7 @@ img{
     left: 60%;
 }
 
+/* These two ids also show fluency in that topic */
 
 #HSimg1{
     position: relative;
@@ -120,3 +124,5 @@ img{
     width: 55%;
     position: fixed;
 }
+
+
