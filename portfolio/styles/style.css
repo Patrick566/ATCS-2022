@@ -1,3 +1,15 @@
+.background{
+    background-color: #000;
+}
+
+.carousel{
+    height: 40% !important;
+    width: 50%;
+}
+
+.carousel-item{
+    height: 40%;
+}
 .title1{
     padding-top: 5px;
     padding-bottom: 5px;
@@ -71,15 +83,14 @@ something I was not completely fluent in a previous lab */
 }
 
 .title{
-    position: fixed;
-    top: 40%;
-    left: 10%;
+    position: sticky;
+    color: white;
 }
 
 .page1{
     float: right;
     position: absolute;
-    margin-top: 40%;
+    
     right: 15%;
     left: 70%;
     font-style: italic;
@@ -97,8 +108,10 @@ something I was not completely fluent in a previous lab */
     position: fixed;
     margin-right: 0;
     padding-right: 100vh;
-    border-right: 3px solid #000;
-    height: 100vh;
+    border-right: 3px solid ;
+    height: 66vh;
+    bottom: 20vh;
+    color: white;
 }
 
 .about_me{
