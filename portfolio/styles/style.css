@@ -1,5 +1,10 @@
+.card{
+    background-color: #000;
+}
+
 .background{
     background-color: #000;
+    padding-bottom: 14%;
 }
 
 .carousel{
@@ -26,35 +31,6 @@ something I was not completely fluent in a previous lab */
 
 #HSphoto{
     width: 50;
-}
-#photo {
-    position: relative;
-    margin-left: 0px;
-    display: grid;
-    grid-template-columns: 50% 50%;
-    grid-template-rows: 520px 520px 520px;
-    grid-column-gap: 5px;
-    grid-row-gap: 5px;
-    background-color: #B9C6AE;
-}
-    
-#photo1 { 
-    grid-area: 1 / 1 / 2 / 2;
-}
-#photo2 { 
-    grid-area: 1 / 2 / 2 / 3;
-}
-#photo3 { 
-    grid-area: 2 / 1 / 3 / 2;
-}
-#photo4 { 
-    grid-area: 2 / 2 / 3 / 3;
-}
-#photo5 { 
-    grid-area: 3 / 1 / 4 / 2;
-}
-#photo6 { 
-    grid-area: 3 / 2 / 4 / 3;
 }
 
 
@@ -87,15 +63,6 @@ something I was not completely fluent in a previous lab */
     color: white;
 }
 
-.page1{
-    float: right;
-    position: absolute;
-    
-    right: 15%;
-    left: 70%;
-    font-style: italic;
-}
-
 .page{
     float: right;
     position: relative;
@@ -109,16 +76,17 @@ something I was not completely fluent in a previous lab */
     margin-right: 0;
     padding-right: 100vh;
     border-right: 3px solid ;
-    height: 66vh;
-    bottom: 20vh;
+    height: 86vh;
+    bottom: 0vh;
     color: white;
 }
 
 .about_me{
     float: right;
     position: absolute;
-    margin-top: 52%;
+    top: 30%;
     left: 60%;
+    color: white;
 }
 
 /* These two ids also show fluency in that topic */
