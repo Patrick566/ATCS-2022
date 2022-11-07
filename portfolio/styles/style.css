@@ -1,3 +1,7 @@
+.navbar{
+    visibility: visible;
+}
+
 .card{
     background-color: #000;
 }
@@ -8,6 +12,7 @@
 }
 
 .carousel{
+    visibility: visible;
     height: 40% !important;
     width: 50%;
 }
@@ -58,7 +63,7 @@ something I was not completely fluent in a previous lab */
     float: right;
 }
 
-.title{
+#title{
     position: sticky;
     color: white;
 }
@@ -71,7 +76,7 @@ something I was not completely fluent in a previous lab */
     font-style: italic;
 }
 
-.line{
+#line{
     position: fixed;
     margin-right: 0;
     padding-right: 100vh;
@@ -81,7 +86,8 @@ something I was not completely fluent in a previous lab */
     color: white;
 }
 
-.about_me{
+#about_me{
+    visibility: visible;
     float: right;
     position: absolute;
     top: 30%;
