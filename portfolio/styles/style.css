@@ -1,44 +1,29 @@
 /* general style*/
-
 .background {
     background-color: #000;
     height: 100vh;
 }
-
 #title {
     position: sticky;
     color: white;
 }
-
 /* homepage style*/
 .carousel{
     position: relative;
     left: 17%;
 }
-
 #about-me
 {
     background-color: #000;
     color: white;
 }
-
-.jumbotron {
-    color: white;
-    background-color: #000;
-    /* position: relative;
-    right: 10%;
-    bottom: 5vh; */
-}
-
 #line {
     position: fixed;
     margin-right: 0;
     padding-right: 50%;
-    
     bottom: 20vh;
     border-right: 3px solid;
     height: 50vh;
-    
     color: white;
 }
 /* experience style*/
@@ -57,20 +42,12 @@
     position: absolute;
     top: 93vh;
 }
-
 #img-icon {
     width: 2%;
 }
-
 #img-icon:hover {
     width: 2.5%;
 }
-
-/* #background {
-    background-color: #000;
-    padding-bottom: 100vh;
-} */
-
 .contact-info {
     position: relative;
     font-style: italic;
