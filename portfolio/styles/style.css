@@ -12,6 +12,9 @@
     position: relative;
     left: 17%;
 }
+.pagination{
+    background-color: #000;
+}
 #about-me
 {
     background-color: #000;
