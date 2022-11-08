@@ -1,115 +1,78 @@
-.navbar{
-    visibility: visible;
-}
+/* general style*/
 
-.card{
+.background {
     background-color: #000;
+    height: 100vh;
 }
 
-.background{
-    background-color: #000;
-    padding-bottom: 14%;
-}
-
-.carousel{
-    visibility: visible;
-    height: 40% !important;
-    width: 50%;
-}
-
-.carousel-item{
-    height: 40%;
-}
-.title1{
-    padding-top: 5px;
-    padding-bottom: 5px;
-    
-    background-color: #989FCE;
-    position: sticky;
-}
-
-img{
-    width: 80%;
-}
-/* The following ids show good understanding of id usage, this was
-something I was not completely fluent in a previous lab */
-
-#HSphoto{
-    width: 50;
-}
-
-
-.footer2{
-    float: right;
-    border-left: 162.5vh solid #3C6E71;
-    border-right: 70px solid #3C6E71;
-    background-color: #3C6E71;
-    margin-right: 0px;
-    position: relative;
-}
-
-.footer-reduced{
-    float: right;
-    border-left: 60vh solid #3C6E71;
-    border-right: 135px solid #3C6E71;
-    background-color: #3C6E71;
-    padding-top:13px;
-    position: relative;
-    top: 95vh;
-    left: 40vh;
-    
-}
-.footer-links{
-    float: right;
-}
-
-#title{
+#title {
     position: sticky;
     color: white;
 }
 
-.page{
-    float: right;
+/* homepage style*/
+.carousel{
     position: relative;
-    margin-top: 20%;
-    right: 15%;
-    font-style: italic;
+    left: 17%;
 }
 
-#line{
+#about-me
+{
+    background-color: #000;
+    color: white;
+}
+
+.jumbotron {
+    color: white;
+    background-color: #000;
+    /* position: relative;
+    right: 10%;
+    bottom: 5vh; */
+}
+
+#line {
     position: fixed;
     margin-right: 0;
-    padding-right: 100vh;
-    border-right: 3px solid ;
-    height: 86vh;
-    bottom: 0vh;
+    padding-right: 50%;
+    
+    bottom: 20vh;
+    border-right: 3px solid;
+    height: 50vh;
+    
     color: white;
 }
-
-#about_me{
-    visibility: visible;
-    float: right;
+/* experience style*/
+.card {
+    background-color: #000;
+}
+#background{
+    height: 100vh;
+    background-color: #000;
+}
+.card-deck {
+    background-color: #000;
+}
+/* contact style*/
+.alert {
     position: absolute;
-    top: 30%;
-    left: 60%;
-    color: white;
+    top: 93vh;
 }
 
-/* These two ids also show fluency in that topic */
+#img-icon {
+    width: 2%;
+}
 
-#HSimg1{
+#img-icon:hover {
+    width: 2.5%;
+}
+
+/* #background {
+    background-color: #000;
+    padding-bottom: 100vh;
+} */
+
+.contact-info {
     position: relative;
-    float: right;
-    right: 0%;
-    width: 44.3%;
-    position: fixed;
+    font-style: italic;
+    color: white;
 }
-
-#HSimg2{
-    position: absolute;
-    top: 52%;
-    width: 55%;
-    position: fixed;
-}
-
-
