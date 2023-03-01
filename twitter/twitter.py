@@ -109,14 +109,22 @@ class Twitter:
         f = input("Who would you like to follow?\n")
         follow = db_session.query(User).where(User.username == f).first()
         id = self.user
-        following = Follower(id.id follow.id)
+        following = Follower(id.id, follow.id)
+        ##help...
+        
 
     def unfollow(self):
         pass
 
     def tweet(self):
-        pass
-    
+        tweet_text = input("Create Tweet: ")
+        tweet_tags = input("Enter your tags seperated by spaces: ")
+        tweet = Tweet(tweet_text, "time", self.user.username)
+        tags = tweet_tags.split(" ")
+        for tag in tags:
+            if(db_session.query(Tag).where(Tag.content == tag) is None)
+                Tag()
+
     def view_my_tweets(self):
         pass
     

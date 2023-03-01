@@ -41,7 +41,10 @@ class Follower(Base):
     follower_id = Column('follower_id', TEXT, ForeignKey('users.username'))
     following_id = Column('following_id', TEXT, ForeignKey('users.username'))
 
-    __init__()
+    def __init__(self,follower_id=None,following_id=None):
+        self.follower_id = follower_id
+        self.following_id = following_id
+
 
 class Tweet(Base):
     # TODO: Complete the class
@@ -55,6 +58,11 @@ class Tweet(Base):
     
     def __repr__(self):
         return self.username + "\n" + self.content + "\n" + "tags" + "\n" + self.timestamp
+
+    def __init__(self, content=None, timestamp=None, username=None):
+        self.content = content
+        self.timestamp = timestamp
+        self.username = username
 
 class Tag(Base):
     # TODO: Complete the class
