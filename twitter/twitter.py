@@ -38,7 +38,9 @@ class Twitter:
     is guaranteed to be logged in after this function.
     """
     def register_user(self):
-        pass
+        bool registered = False
+        while(!registered):
+
 
     """
     Logs the user in. The user
