@@ -28,6 +28,10 @@ class User(Base):
     def __repr__(self):
         return "@" + self.username
 
+    def __init__(self, username=None, password=None):
+        self.username = username
+        self.password = password
+
 
 class Follower(Base):
     __tablename__ = "followers"

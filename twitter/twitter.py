@@ -3,6 +3,9 @@ from database import init_db, db_session
 from datetime import datetime
 
 class Twitter:
+    def __init__(self, user=None, logged_in=False):
+        self.user = user
+        self.logged_in = logged_in
     """
     The menu to print once a user has logged in
     """
@@ -16,6 +19,12 @@ class Twitter:
         print("6. Follow")
         print("7. Unfollow")
         print("0. Logout")
+    
+    def print_startup(self):
+        print("Please select a menu option:")
+        print("1. Login")
+        print("2. Register User")
+        print("0. Exit")
     
     """
     Prints the provided list of tweets.
@@ -38,27 +47,62 @@ class Twitter:
     is guaranteed to be logged in after this function.
     """
     def register_user(self):
-        bool registered = False
-        while(!registered):
-
+        while(self.logged_in != True):
+            username = input("What will your twitter handle be?\n")
+            password = input("Enter a password:\n")
+            password2 = input("Re-enter password:\n")
+            other_user = db_session.query(User).where(User.username == username).first()
+            if(password != password2):
+                print("Those passwords don't match. Try again.\n\n")
+            elif(other_user != None):
+                print("That usernae is already taken. Try again.\n")
+            else:
+                print("\nWelcome " + username + "!")
+                person = User(username, password)
+                self.user = person
+                self.logged_in = True
+                db_session.add(person)
+                
 
     """
     Logs the user in. The user
     is guaranteed to be logged in after this function.
     """
     def login(self):
-        pass
+        while(self.logged_in != True):
+            username = input("Username: ")
+            password = input("Password: ")
+            user = db_session.query(User).where(User.username == username).first()
+            if(user != None and user.password == password):
+                print("Welcome " + username + "!")
+                person = User(username, password)
+                self.user = person
+                self.logged_in = True
+                db_session.add(person)
+            else:
+                print("Invalid username or password\n")
 
     
     def logout(self):
-        pass
+        self.user = None
+        self.logged_in = False
+        self.end()
+        
 
     """
     Allows the user to login,  
     register, or exit.
     """
     def startup(self):
-        pass
+        self.print_startup()
+        option = int(input(""))
+        if(option == 1):
+            self.login()
+        elif(option == 2):
+            self.register_user()
+        else:
+            self.logout()
+
 
     def follow(self):
         pass
