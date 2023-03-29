@@ -57,11 +57,13 @@ class Twitter:
             elif(other_user != None):
                 print("That usernae is already taken. Try again.\n")
             else:
-                print("\nWelcome " + username + "!")
                 person = User(username, password)
+                print(person)
                 self.user = person
                 self.logged_in = True
                 db_session.add(person)
+                db_session.commit()
+                print("\nWelcome " + username + "!")
                 
 
     """
@@ -73,12 +75,11 @@ class Twitter:
             username = input("Username: ")
             password = input("Password: ")
             user = db_session.query(User).where(User.username == username).first()
-            if(user != None and user.password == password):
+            if user is not None and user.password == password:
                 print("Welcome " + username + "!")
                 person = User(username, password)
                 self.user = person
                 self.logged_in = True
-                db_session.add(person)
             else:
                 print("Invalid username or password\n")
 
@@ -105,7 +106,10 @@ class Twitter:
 
 
     def follow(self):
-        pass
+        f = input("Who would you like to follow?\n")
+        follow = db_session.query(User).where(User.username == f).first()
+        id = self.user
+        following = Follower(id.id follow.id)
 
     def unfollow(self):
         pass
@@ -138,25 +142,23 @@ class Twitter:
 
         print("Welcome to ATCS Twitter!")
         self.startup()
-
-        self.print_menu()
-        option = int(input(""))
-
-        if option == 1:
-            self.view_feed()
-        elif option == 2:
-            self.view_my_tweets()
-        elif option == 3:
-            self.search_by_tag()
-        elif option == 4:
-            self.search_by_user()
-        elif option == 5:
-            self.tweet()
-        elif option == 6:
-            self.follow()
-        elif option == 7:
-            self.unfollow()
-        else:
-            self.logout()
+        if self.logged_in:
+            self.print_menu()
+            option = int(input(""))
+            if option == 1:
+                self.view_feed()
+            elif option == 2:
+                self.view_my_tweets()
+            elif option == 3:
+                self.search_by_tag()
+            elif option == 4:
+                self.search_by_user()
+            elif option == 5:
+                self.tweet()
+            elif option == 6:
+                self.follow()
+            elif option == 7:
+                self.unfollow()
+            else:
+                self.logout()
         
-        self.end()

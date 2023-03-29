@@ -41,6 +41,8 @@ class Follower(Base):
     follower_id = Column('follower_id', TEXT, ForeignKey('users.username'))
     following_id = Column('following_id', TEXT, ForeignKey('users.username'))
 
+    __init__()
+
 class Tweet(Base):
     # TODO: Complete the class
     __tablename__ = "tweets"
