@@ -72,12 +72,12 @@ class Twitter:
     """
     def login(self):
         while(self.logged_in != True):
-            username = input("Username: ")
-            password = input("Password: ")
-            user = db_session.query(User).where(User.username == username).first()
-            if user is not None and user.password == password:
-                print("Welcome " + username + "!")
-                person = User(username, password)
+            name = input("Username: ")
+            key = input("Password: ")
+            user = db_session.query(User).where(User.username == name).first()
+            if user is not None and user.password == key:
+                print("Welcome " + name + "!")
+                person = User(name, key)
                 self.user = person
                 self.logged_in = True
             else:
@@ -110,7 +110,7 @@ class Twitter:
         follow = db_session.query(User).where(User.username == f).first()
         id = self.user
         following = Follower(id.id, follow.id)
-        ##help...
+        #help...
         
 
     def unfollow(self):
@@ -120,11 +120,27 @@ class Twitter:
         tweet_text = input("Create Tweet: ")
         tweet_tags = input("Enter your tags seperated by spaces: ")
         tweet = Tweet(tweet_text, "time", self.user.username)
+        db_session.add(tweet)
         tags = tweet_tags.split(" ")
+        ids = [0]
         for tag in tags:
-            if(db_session.query(Tag).where(Tag.content == tag) is None)
-                Tag()
+            c = db_session.query(Tag).where(Tag.content == tag).first()
 
+            if c is None:
+                ids.append(None)
+            else:
+                ids.append(c.id)
+        for id in ids:
+            if(id is None):
+                new_tag = Tag(tag)
+                db_session.add(new_tag)
+                db_session.add(TweetTag(tweet.id, new_tag.id))
+            else:
+                db_session.add(TweetTag(tweet.id, id))
+                
+        db_session.commit()
+        
+        
     def view_my_tweets(self):
         pass
     

@@ -55,7 +55,9 @@ class Tweet(Base):
     content = Column("content", TEXT)
     timestamp = Column("timestamp", TEXT, nullable=False)
     username = Column("username", TEXT, nullable=False)
-    
+    tags = relationship("Tag", secondary="tweettags", back_populates="tweets")
+
+
     def __repr__(self):
         return self.username + "\n" + self.content + "\n" + "tags" + "\n" + self.timestamp
 
@@ -71,9 +73,13 @@ class Tag(Base):
     #Columns
     id = Column("id", INTEGER, primary_key=True)
     content = Column("content", TEXT)
+    tweets = relationship("Tweet", secondary="tweettags", back_populates="tags")
     
     def __repr__(self):
         return "#" + self.content
+    
+    def __init__(self, content=None):
+        self.content = content
 
 class TweetTag(Base):
     # TODO: Complete the class
@@ -83,5 +89,9 @@ class TweetTag(Base):
     id = Column("id", INTEGER, primary_key=True)
     tweet_id = Column('tweet_id', INTEGER, ForeignKey('tweets.id'))
     tag_id = Column('tag_id', INTEGER, ForeignKey('tags.id'))
+
+    def __init__(self,tweet_id=None,tag_id=None):
+        self.tweet_id = tweet_id
+        self.tag_id = tag_id
     
 
