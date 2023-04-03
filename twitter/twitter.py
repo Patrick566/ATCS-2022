@@ -106,56 +106,85 @@ class Twitter:
 
 
     def follow(self):
-        f = input("Who would you like to follow?\n")
-        follow = db_session.query(User).where(User.username == f).first()
-        id = self.user
-        following = Follower(id.id, follow.id)
-        #help...
+        friend = input("Who would you like to follow?\n")
+        follow = db_session.query(User).where(User.username == friend).first()
+        already_follow = db_session.query(Follower).where((Follower.follower_id == self.user.username) and (Follower.following_id == friend)).first() is not None
+        if(already_follow):
+            print("You already follow " + friend)
+        else:
+            following = Follower(self.user.username, follow.username)
+            db_session.add(following)
+            print("You now follow " + friend)
+            db_session.commit()
         
-
     def unfollow(self):
-        pass
+        unfriend = input("Who would you like to unfollow?\n")
+        unfollow =  db_session.query(Follower).where((Follower.follower_id == self.user.username) and (Follower.following_id == unfriend)).first()
+        db_session.delete(unfollow)
+        db_session.commit()
+
 
     def tweet(self):
         tweet_text = input("Create Tweet: ")
         tweet_tags = input("Enter your tags seperated by spaces: ")
-        tweet = Tweet(tweet_text, "time", self.user.username)
+        tweet = Tweet(tweet_text, datetime.now(), self.user.username)
+
         db_session.add(tweet)
         tags = tweet_tags.split(" ")
-        ids = [0]
+        ids = []
         for tag in tags:
             c = db_session.query(Tag).where(Tag.content == tag).first()
-
             if c is None:
-                ids.append(None)
-            else:
-                ids.append(c.id)
-        for id in ids:
-            if(id is None):
                 new_tag = Tag(tag)
                 db_session.add(new_tag)
-                db_session.add(TweetTag(tweet.id, new_tag.id))
-            else:
+                db_session.commit()
+                c = db_session.query(Tag).where(Tag.content == tag).first()
+            ids.append(c.id)
+        for id in ids:
                 db_session.add(TweetTag(tweet.id, id))
                 
         db_session.commit()
         
         
     def view_my_tweets(self):
-        pass
+        my_tweets = db_session.query(Tweet).where(Tweet.username == self.user.username).all()
+        self.print_tweets(my_tweets)
     
     """
     Prints the 5 most recent tweets of the 
     people the user follows
     """
     def view_feed(self):
-        pass
+        following = db_session.query(Follower).where(Follower.follower_id == self.user.username).all()
+        feed = []
+        for follow in following:
+            
+            feed.append(db_session.query(Tweet).where(Tweet.username == follow.following_id).all())
+        last = len(feed)   
+        for i in range(0, last):   
+            for j in range(0, last-i-1):
+                if (feed[j].timestamp < feed[j + 1].timestamp):   
+                    new_item = feed[j]   
+                    feed[j]= feed[j + 1]   
+                    feed[j + 1]= new_item
+        final_feed = []
+        for i in range (0, 5):
+            final_feed += feed[i]
+        self.print_tweets(final_feed)
 
     def search_by_user(self):
-        pass
+        search = input("Whose tweets would you like to view?\n")
+        their_tweets = db_session.query(Tweet).where(Tweet.username == search).all()
+        self.print_tweets(their_tweets)
 
     def search_by_tag(self):
-        pass
+        search = input("Which tag would you like to search?\n")
+        tag = db_session.query(Tag).where(Tag.content == search).first()
+        intermediate = db_session.query(TweetTag).where(TweetTag.tag_id == tag.id).all()
+        tag_tweets = []
+        for tt in intermediate:
+            tag_tweets.append(db_session.query(Tweet).where(Tweet.id == tt.tweet_id).first())
+        self.print_tweets(tag_tweets)
 
     """
     Allows the user to select from the 
@@ -166,7 +195,7 @@ class Twitter:
 
         print("Welcome to ATCS Twitter!")
         self.startup()
-        if self.logged_in:
+        while self.logged_in:
             self.print_menu()
             option = int(input(""))
             if option == 1:
