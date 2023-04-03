@@ -168,11 +168,14 @@ class Twitter:
     def search_by_tag(self):
         search = input("Which tag would you like to search?\n")
         tag = db_session.query(Tag).where(Tag.content == search).first()
-        intermediate = db_session.query(TweetTag).where(TweetTag.tag_id == tag.id).all()
-        tag_tweets = []
-        for tt in intermediate:
-            tag_tweets.append(db_session.query(Tweet).where(Tweet.id == tt.tweet_id).first())
-        self.print_tweets(tag_tweets)
+        if tag is None:
+            print("There are no tweets with this tag")
+        else:
+            intermediate = db_session.query(TweetTag).where(TweetTag.tag_id == tag.id).all()
+            tag_tweets = []
+            for tt in intermediate:
+                tag_tweets.append(db_session.query(Tweet).where(Tweet.id == tt.tweet_id).first())
+            self.print_tweets(tag_tweets)
 
     """
     Allows the user to select from the 
