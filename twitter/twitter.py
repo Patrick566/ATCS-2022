@@ -156,6 +156,7 @@ class Twitter:
     people the user follows
     """
     def view_feed(self):
+        # queries database, joins on following and then limits to only those who you follow, limit(5)
         feed = db_session.query(Tweet).join(Follower, Follower.following_id == Tweet.username).where(Follower.follower_id == self.user.username).order_by(Tweet.timestamp.desc()).limit(5)
         self.print_tweets(feed)
 
