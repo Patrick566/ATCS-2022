@@ -121,6 +121,7 @@ class Twitter:
         unfriend = input("Who would you like to unfollow?\n")
         unfollow =  db_session.query(Follower).where((Follower.follower_id == self.user.username) and (Follower.following_id == unfriend)).first()
         db_session.delete(unfollow)
+        print("You no longer follow " + unfriend)
         db_session.commit()
 
 
@@ -155,22 +156,8 @@ class Twitter:
     people the user follows
     """
     def view_feed(self):
-        following = db_session.query(Follower).where(Follower.follower_id == self.user.username).all()
-        feed = []
-        for follow in following:
-            
-            feed.append(db_session.query(Tweet).where(Tweet.username == follow.following_id).all())
-        last = len(feed)   
-        for i in range(0, last):   
-            for j in range(0, last-i-1):
-                if (feed[j].timestamp < feed[j + 1].timestamp):   
-                    new_item = feed[j]   
-                    feed[j]= feed[j + 1]   
-                    feed[j + 1]= new_item
-        final_feed = []
-        for i in range (0, 5):
-            final_feed += feed[i]
-        self.print_tweets(final_feed)
+        feed = db_session.query(Tweet).join(Follower, Follower.following_id == Tweet.username).where(Follower.follower_id == self.user.username).order_by(Tweet.timestamp.desc()).limit(5)
+        self.print_tweets(feed)
 
     def search_by_user(self):
         search = input("Whose tweets would you like to view?\n")
@@ -214,4 +201,3 @@ class Twitter:
                 self.unfollow()
             else:
                 self.logout()
-        
